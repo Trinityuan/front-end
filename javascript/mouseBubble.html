@@ -31,16 +31,14 @@
         		$("can").appendChild(oBubble);
         		
         		//设定时间过后div的大小改变，每隔50毫秒，半径增加i个像素
-						var i=0;
-						var timer = setInterval(function(){
-							//设置渐隐效果，i的值从0-50，因为时间从0到300，步长30，因此可以用此来设置透明度从1-0
-							oBubble.style.opacity = (50-i)/50;
-							
-							i+= 5;
-							oBubble.style.width = 20+i + "px";
-							oBubble.style.height = 20+ i + "px";
-							
-						},30);
+			var i=0;
+			var timer = setInterval(function(){
+			//设置渐隐效果，i的值从0-50，因为时间从0到300，步长30，因此可以用此来设置透明度从1-0
+				oBubble.style.opacity = (50-i)/50;
+				i+= 5;
+				oBubble.style.width = 20+i + "px";
+				oBubble.style.height = 20+ i + "px";			
+			},30);
         		//设定时间删除这个div,并且删除定时器
         		setTimeout(function(){
         			$("can").removeChild(oBubble);
