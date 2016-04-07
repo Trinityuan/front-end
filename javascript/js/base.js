@@ -27,3 +27,11 @@ function getRandomColor(){
 	}
 	return color
 }
+//判断是不是闰年的函数
+function isLoop(year) {
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
