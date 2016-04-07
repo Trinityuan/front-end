@@ -27,6 +27,14 @@ function getRandomColor(){
 	}
 	return color
 }
+//获得阶乘值
+function factorial(num) {
+	if (num <= 1) {
+		return 1;
+	} else {
+		return num * factorial(num - 1);
+	}
+}
 //判断是不是闰年的函数
 function isLoop(year) {
 	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
