@@ -1,0 +1,55 @@
+  <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标气泡跟随</title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			html,body{width: 100%;height: 100%;}
+			.can{width: 100%;height: 100%;}
+			.bubble{position: absolute;width: 20px;height: 20px;border-radius: 50%;border: 3px #0099FF solid;}
+		</style>
+	</head>
+	<body>
+		<!--
+        	作者：zhshy123@foxmail.com
+        	时间：2016-04-06
+        	描述：气泡跟随鼠标创建
+        -->
+        <div id="can" class="can">
+        	
+        </div>
+        <script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        	document.onmousemove = function(event){
+        		var e = window.event || event ;
+        		//创建一个位于鼠标位置的div，并放在画布上
+        		var oBubble = document.createElement("div");
+        		oBubble.className = "bubble";
+        		oBubble.style.left = e.clientX + "px";
+        		oBubble.style.top  = e.clientY + "px";
+        		$("can").appendChild(oBubble);
+        		
+        		//设定时间过后div的大小改变，每隔50毫秒，半径增加i个像素
+						var i=0;
+						var timer = setInterval(function(){
+							//设置渐隐效果，i的值从0-50，因为时间从0到300，步长30，因此可以用此来设置透明度从1-0
+							oBubble.style.opacity = (50-i)/50;
+							
+							i+= 5;
+							oBubble.style.width = 20+i + "px";
+							oBubble.style.height = 20+ i + "px";
+							
+						},30);
+        		//设定时间删除这个div,并且删除定时器
+        		setTimeout(function(){
+        			$("can").removeChild(oBubble);
+        			clearInterval(timer);
+        		},300);
+        		
+        		
+        		
+        	}
+        </script>
+	</body>
+</html>
