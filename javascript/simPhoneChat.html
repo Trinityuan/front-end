@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>手机聊天测试</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<!--
+        	作者：zhshy123@foxmail.com
+        	时间：2016-04-05
+        	描述：手机聊天
+        -->
+        <div id="chatbg" class="chatbg">
+        	<div id="nickname" class="nickname">Burckhart</div>
+        	<div id="cgnickname" class="cgnickname">
+        		<ul>
+        			<li>Timmy</li>
+        			<li>Burckhart</li>
+        		</ul>
+        	</div>
+        	<div id="chatcontents" class="chatcontents">
+        		<ul id="chats">
+        			<li class="rightchat"><span>Can you see my message?</span></li>
+        			<li class="leftchat"><span>Yes I can receive this message</span></li>
+        		</ul>
+        	</div>
+        	<div class="inputform">
+        		<div class="inputline">
+        			<input type="text" class="words" id="words" placeholder="Write a message" />
+        		</div> 
+        		<input type="button" class="submsg" id="submsg" value="发送" />
+        	</div>
+        </div>
+        
+        
+        
+        <script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        	//设置默认用户名为1
+        	var account = 1;
+        	//点击用户名切换用户
+        	$("nickname").onclick = function(event){
+        		//阻止冒泡
+        		event.stopPropagation();
+        		$("cgnickname").style.display = "block";
+        	}
+        	//点击其他位置，隐藏切换用户的栏目
+        	$("chatbg").onclick = function(){
+        		$("cgnickname").style.display = "none";
+        	}
+        	//获取昵称,添加事件，点击之后切换用户名
+        	var aNickNames = $("cgnickname").getElementsByTagName("li");
+        	for (i=0;i<aNickNames.length;i++) {
+        		aNickNames[i].index = i;
+        		aNickNames[i].onclick = function(){
+        			$("nickname").innerText = this.innerText;
+        			account = Number(this.index);
+        			$("cgnickname").style.display = "none";
+        		}
+        	}
+        	$("submsg").onclick = function(){
+        		sendMessage();
+        		clearInputs();
+        		goNewMessage();
+        	}
+        	//判断键盘事件，当按键为回车键的时候，出发发送消息事件
+        	document.onkeydown=function(event){
+           		var e = event || window.event || arguments.callee.caller.arguments[0];
+           		if(e && e.keyCode==13){
+                 sendMessage();
+                 clearInputs();
+                 goNewMessage();
+            	}
+            }
+        	//发送消息的函数
+        	function sendMessage(){
+        		var liMsg = document.createElement("li");
+        		var msgSpan = document.createElement("span");
+        		msgSpan.innerText = $("words").value;
+        		if (account) {
+        			liMsg.className = "leftchat";
+        		} else{
+        			liMsg.className = "rightchat";
+        		}
+        		liMsg.appendChild(msgSpan);
+        		$("chats").appendChild(liMsg);
+        	}
+        	//清除发送框的内容
+        	function clearInputs(){
+        		$("words").value = "";
+        	}
+        	//消息自动跳转到最新的一条
+        	function goNewMessage(){
+        		$("chats").scrollTop += 10000;
+        		console.log($("chats").scrollTop);
+        	}
+        </script>
+	</body>
+</html>
