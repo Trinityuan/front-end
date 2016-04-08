@@ -43,3 +43,15 @@ function isLoop(year) {
 		return false;
 	}
 }
+//从cookie中通过键获取对应的值
+function getCookieValue(cookieStr,cookieKey){
+	var aCookie = cookieStr.split("; ");
+	var cookieVaue = "";
+	for (i in aCookie) {
+		var tCookie = aCookie[i].split("=");
+		if (tCookie[0] === cookieKey) {
+			cookieVaue = tCookie[1];
+		}
+	}
+	return cookieVaue;
+}
