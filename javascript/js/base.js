@@ -27,31 +27,60 @@ function getRandomColor(){
 	}
 	return color
 }
-//获得阶乘值
-function factorial(num) {
-	if (num <= 1) {
-		return 1;
-	} else {
-		return num * factorial(num - 1);
-	}
-}
-//判断是不是闰年的函数
-function isLoop(year) {
-	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
-//从cookie中通过键获取对应的值
-function getCookieValue(cookieStr,cookieKey){
-	var aCookie = cookieStr.split("; ");
-	var cookieVaue = "";
-	for (i in aCookie) {
-		var tCookie = aCookie[i].split("=");
-		if (tCookie[0] === cookieKey) {
-			cookieVaue = tCookie[1];
+//数学函数
+var zMath = {
+	//获得阶乘值
+	function factorial(num) {
+		if (num <= 1) {
+			return 1;
+		} else {
+			return num * factorial(num - 1);
+		}
+	},
+	//判断是不是闰年的函数
+	function isLoop(year) {
+		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
-	return cookieVaue;
+}
+
+//cookie的操作
+var zCookie = {
+	//从cookie中通过键获取对应的值
+	getCookieValue: function(cookieKey) {
+		var aCookie = document.cookie.split("; ");
+		var cookieVaue = "";
+		for (i in aCookie) {
+			var tCookie = aCookie[i].split("=");
+			if (tCookie[0] === cookieKey) {
+				cookieVaue = tCookie[1];
+			}
+		}
+		return cookieVaue;
+	},
+	//通过Key-value和过期时间创建cookie，过期时间单位为秒
+	setCookie: function(Key, Value, expiresSec) {
+		var date = new Date();
+		date.setTime(date.getTime() + expiresSec * 1000);
+		document.cookie = "" + Key + "=" + Value + ";expires=" + date.toGMTString();
+		if (zCookie.getCookieValue(Key) != "") {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	//通过key删除一个cookie
+	delCookie: function(Key) {
+		var date = new Date();
+		date.setTime(date.getDate() - 1);
+		document.cookie = "" + Key + "= ;expires=" + date.toGMTString();
+		if (zCookie.getCookieValue(Key) == "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
