@@ -30,7 +30,7 @@ function getRandomColor(){
 //数学函数
 var zMath = {
 	//获得阶乘值
-	function factorial(num) {
+	factorial:function(num) {
 		if (num <= 1) {
 			return 1;
 		} else {
@@ -38,7 +38,7 @@ var zMath = {
 		}
 	},
 	//判断是不是闰年的函数
-	function isLoop(year) {
+	isLoop : function(year) {
 		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
 			return true;
 		} else {
