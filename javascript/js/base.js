@@ -45,6 +45,7 @@ var zMath = {
 			return false;
 		}
 	},
+	//得到斐波那契数列的第n位
 	getFibo : function(n){
 		var result = [0,1];
 		if (n<2) {
