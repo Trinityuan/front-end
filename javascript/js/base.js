@@ -44,6 +44,21 @@ var zMath = {
 		} else {
 			return false;
 		}
+	},
+	getFibo : function(n){
+		var result = [0,1];
+		if (n<2) {
+			return result[n];
+		}
+		var fib1 = 0;
+		var fib2 = 1;
+		var fibn = 0;
+		for (i=2;i<=n;i++) {
+			fibn = fib1 + fib2;
+			fib1 = fib2;
+			fib2 = fibn;
+		}
+		return fibn;
 	}
 }
 
