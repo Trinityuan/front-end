@@ -4,18 +4,34 @@ function getEleById(idStr){
 }
 var $ = getEleById
 
-//通用获取页面元素style样式
-function getStyle(eleObj,Attr){
-	//返回的属性值是一个字符串，因此赋处置为""
-	var attrStyle = "";
-	if (Attr.currentStyle) {
-		//IE浏览器的style
-		attrStyle = eleObj.currentStyle[Attr];
-	}else{
-		//其他浏览器获取的style
-		attrStyle = window.getComputedStyle(eleObj,null)[Attr];
+	//文档的操作
+var zDocument = {
+	//通过classname获取元素
+	getEleByClass: function(oparent, classname) {
+		var i,
+			aElements = [],
+			eleReg = new RegExp("\\b" + classname + "\\b"),
+			aEles = oparent.getElementsByTagName("*");
+		for (i = 0; i < aEles.length; i++) {
+			if (eleReg.test(aEles[i].className)) {
+				aElements.push(aEles[i])
+			}
+		}
+		return aElements;
+	},
+	//通用获取页面元素style样式
+	getStyle: function(eleObj, Attr) {
+		//返回的属性值是一个字符串，因此赋处置为""
+		var attrStyle = "";
+		if (Attr.currentStyle) {
+			//IE浏览器的style
+			attrStyle = eleObj.currentStyle[Attr];
+		} else {
+			//其他浏览器获取的style
+			attrStyle = window.getComputedStyle(eleObj, null)[Attr];
+		}
+		return attrStyle;
 	}
-	return attrStyle;
 }
 
 //随机返回一个随机颜色
