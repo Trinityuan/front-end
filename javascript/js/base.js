@@ -116,3 +116,63 @@ var zCookie = {
 		}
 	}
 }
+//Ajax的操作
+var zAjax = {
+	//使用get方法
+	get: function(url, fnSucc, fnFaild) {
+		//1.创建Ajax对象
+		var oAjax = null;
+
+		if (window.XMLHttpRequest) {
+			//支持浏览器 IE7+, Firefox, Chrome, Opera, Safari
+			oAjax = new XMLHttpRequest();
+		} else {
+			//IE5和IE6浏览器
+			oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		//2.连接服务器
+		oAjax.open('GET', url, true);
+
+		//设置header，设置apikey
+		//			oAjax.setRequestHeader("apikey","2c72b7951ef29fd27b3ea15ad1ac399f");
+
+		//3.发送请求
+		oAjax.send();
+
+		//4.接收服务器的返回
+		oAjax.onreadystatechange = function() {
+			if (oAjax.readyState == 4) //完成
+			{
+				if (oAjax.status == 200) //成功
+				{
+					fnSucc(oAjax.responseText);
+					//获取到的响应数据为Text类型，还有一种类型为xml文件类型
+				} else {
+					if (fnFaild)
+						fnFaild(oAjax.status);
+				}
+			}
+		}
+	},
+	//用post方法来获取数据
+	post: function(url, data, fnSucc, fnFaild) {
+		var oAjax = null;
+		if (window.XMLHttpRequest) {
+			oAjax = new XMLHttpRequest();
+		} else {
+			oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		oAjax.open("POST", url, true);
+		oAjax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		oAjax.send(data);
+		oAjax.onreadystatechange = function() {
+			if (oAjax.readyState == 4 && oAjax.status == 200) {
+				fnSucc(oAjax.responseText);
+			} else {
+				fnFaild(oAjax.status);
+			}
+		}
+	}
+
+}
