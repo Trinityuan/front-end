@@ -176,3 +176,30 @@ var zAjax = {
 	}
 
 }
+//动画效果
+var zAnimation = {
+	//根据提供的json数据，对元素进行移动
+	eleMove: function(obj, json, endFun) {
+		clearInterval(obj.timer);
+		var iSpeed = 0;
+		obj.timer = setInterval(function() {
+			var isOver = true; //默认认为已经运动结束
+			for (var attr in json) {
+				//逐个对比元素，如果不相同，那么就缓速向目标样式进行调整
+				var iCur = parseInt(zDocument.getStyle(obj, attr));
+				//iSpeed就是每30毫秒移动的距离
+				iSpeed = (json[attr] - iCur) / 5;
+				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+				if (iCur != json[attr]) {
+					isOver = false;
+					obj.style[attr] = iCur + iSpeed + "px";
+				}
+			}
+			if (isOver) {
+				//如果移动结束，清除定时器，如果有结束函数，那么运行结束函数
+				clearInterval(obj.timer);
+				endFun && endFun();
+			}
+		}, 30);
+	}
+};
