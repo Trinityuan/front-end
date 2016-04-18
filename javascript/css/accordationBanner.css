@@ -1,0 +1,40 @@
+body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+.can {
+	position: relative;
+	width: 680px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid #009999;
+	height: 300px;
+}
+
+.can ul li {
+	position: absolute;
+	float: left;
+}
+
+.can ul li span {
+	width: 30px;
+	height: 300px;
+	opacity: 0.5;
+	background: #000000;
+	position: absolute;
+	color: #FFFFFF;
+	line-height: 300px;
+	text-align: center;
+	cursor: pointer;
+	-webkit-user-select: none;
+	left: 0;
+	top: 0;
+}
