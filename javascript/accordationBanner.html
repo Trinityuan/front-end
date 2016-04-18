@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/accordationBanner.css"/>
+	</head>
+
+	<body>
+		<ul id="can" class="can">
+			<ul id="list">
+				<li><img src="images/1a.jpg" /><span>1</span></li>
+				<li><img src="images/2a.jpg" /><span>2</span></li>
+				<li><img src="images/3a.jpg" /><span>3</span></li>
+				<li><img src="images/4a.jpg" /><span>4</span></li>
+				<li><img src="images/5a.jpg" /><span>5</span></li>
+			</ul>
+			</div>
+			<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				var aImages = $("list").getElementsByTagName("li");
+				for (var i = 0; i < aImages.length; i++) {
+					aImages[i].index = i;
+					//循环设置图片的默认位置，向右移动30*索引值
+					aImages[i].style.left = i * 30 + "px";
+					//鼠标滑过之后，将它和他它边的left值设置为i*30
+					//他右边的，left值设置为530+i*30
+					aImages[i].onmouseover = function() {
+						for (var j=0;j<aImages.length;j++) {
+							if (j<=this.index) {
+								zAnimation.eleMove(aImages[j],{"left": j*30});
+							} else{
+								zAnimation.eleMove(aImages[j],{"left":530 + j*30});
+							}
+						}
+					}
+				}
+			</script>
+	</body>
+
+</html>
