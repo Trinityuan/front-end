@@ -9,3 +9,4 @@
 	>> `simPhoneChat.html`---模拟扁平化手机短信聊天  
 	>> `scrollBox.html`---元素在窗口中的无缝滚动   
 	>> `getFibonacci.html` --- 得到斐波那契数列第n位数
+	>> `accordationBanner.html` ---仿制手风琴的banner效果   
