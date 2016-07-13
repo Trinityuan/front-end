@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>判断字符串出现的次数，并删除多余的字符串</title>
+	</head>
+	<body>
+		<!--
+        	作者：zhshy123@foxmail.com
+        	时间：2016-03-29
+        	描述：判断字符串出现的次数，并删除多余的字符串，例如输入abbccc 输出a1,b2,c3 abc
+        --> 
+        <script type="text/javascript">
+        	var inputString = prompt("请输入一个英文字符串");
+        	function getShowTimes(string,indexChar){
+        		//获取一个字符在字符串中出现的次数，通过判断分割字符串产生的数组数来得到
+        		return (string.split(indexChar).length-1);
+        	}
+        	function delExtraChar(string,index){
+        		//通过index索引值删除字符串的某一个字符
+        		//0不会出现被剪切的情况，因为第0个元素属于重复中的第一个字符
+        		var string1 = string.substring(0,index);
+        		var string2 = string.substring(index+1);
+        		return (string1+string2);
+        	}
+        	function DelSameChar(string,theChar){
+        		//通过判断字符第一次出现和最后一次出现的索引值是否相同来接切掉多余的字符
+        		var firstIndex =string.indexOf(theChar),
+        			nextIndex = string.lastIndexOf(theChar);
+        		if (firstIndex == nextIndex ) {
+        			return string;
+        		} else{
+        			return DelSameChar(delExtraChar(string,nextIndex),theChar);
+        		}
+        	}
+        	function getShortString(string){
+        		//通过循环，依次删除重复的字符，重新赋值字符串，字符串的长度随之改变
+        		var i;
+        		for(i=0;i<string.length;i++){
+        			if (getShowTimes(string,string.charAt(i)) > 1) {
+        				string = DelSameChar(string,string.charAt(i));
+        			}
+        		}
+        		return string;
+        	}
+        	function Main(string){
+        		//获取缩短后的字符串，以此为顺序，以此获取缩短前字符串中字符出现的次数
+        		var i,
+        			shortString = getShortString(string);
+        		for (i=0;i<shortString.length;i++) {
+        			document.write(shortString[i] + getShowTimes(string,shortString[i]) + ",");
+        		}
+        		document.write(shortString);
+        	}
+        	Main(inputString);
+        </script>
+	</body>
+</html>

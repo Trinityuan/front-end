@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>在线翻译</title>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/translate.css" />
+	</head>
+
+	<body>
+		<!--
+        	作者：zhshy123@foxmail.com
+        	时间：2016-04-15
+        	描述：在线翻译
+        -->
+		<div class="can">
+
+			<div class="tranlate_box">
+				<div class="transwords">
+					<div class="transinputline">
+						<input class="transinput" type="text" name="transinput" id="transinput" value="" placeholder="请输入翻译的词汇" />
+					</div>
+
+					<input class="transbut" type="button" id="transbut" value="点击翻译" />
+				</div>
+				<div id="trans-result-cn" class="trans-result-cn">
+					<div class="cn-bar">
+						<b id="cnchar"></b><em id="pinyin"></em><i id="audio"></i>
+					</div>
+					<div class="relult-bar">
+						<span>释义：</span>
+						<ul id="resultlist" class="resultlist">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/translate.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
