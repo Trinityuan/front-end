@@ -1,10 +1,17 @@
 //通过id返回元素对象
-function getEleById(idStr){
-	return document.getElementById(idStr);
-}
-var $ = getEleById
+// function getEleById(idStr){
+// 	return document.getElementById(idStr);
+// }
+// Query 选择器
+document.querySelector = (function(fnc){
+	return function(){
+		return fnc.apply(document,arguments)
+	}
+})(document.querySelector)
 
-	//文档的操作
+const $ = document.querySelector;
+
+//文档的操作
 var zDocument = {
 	//通过classname获取元素
 	getEleByClass: function(oparent, classname) {
